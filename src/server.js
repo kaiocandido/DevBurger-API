@@ -1,3 +1,8 @@
-import app from "./app"
+/* 
+configuration of a server in Node.js, using the Express framework.
+Importing the app module, from the "./app" directory.
+*/
+
+import app from './app'
 
 app.listen(3001, () => console.log('server is running'))
