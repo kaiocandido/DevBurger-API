@@ -5,4 +5,4 @@ Importing the app module, from the "./app" directory.
 
 import app from './app'
 
-app.listen(3001, () => console.log('server is running'))
+app.listen(3021, () => console.log('server is running'))
