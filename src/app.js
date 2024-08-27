@@ -1,6 +1,7 @@
 import express from 'express'
 import routes from '../src/routes'
 import './database'
+import { resolve } from 'node:path'
 
 /* 
 This code defines a basic configuration for an Express application using an App class:
@@ -16,6 +17,10 @@ class App {
   }
   middlewares() {
     this.app.use(express.json())
+    this.app.use(
+      '/product-file',
+      express.static(resolve(__dirname, '..', 'uploads'))
+    )
   }
   routes() {
     this.app.use(routes)
