@@ -1,14 +1,15 @@
+/* 
+WHAT WAS DONE"
+
+It communicates with our bank and through the store function, which is a post that is in a router, we create a user
+Checking if the parameters are correct being password, email, name, and if the user is admin
+Validating the same emails with sequelize
+*/
 import User from '../models/User'
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
-
-/* 
-  It communicates with our bank and through the store function, which is a post that is in a router, we create a user
-*/
-
 class UserController {
   async store(request, response) {
-    /* Filter using YUP to validate parameters*/
     const schema = Yup.object({
       name: Yup.string().required(),
       email: Yup.string().email().required(),
@@ -16,7 +17,6 @@ class UserController {
       admin: Yup.boolean(),
     })
 
-    /* Checking if the parameters are correct being password, email, name, and if the user is admin*/
     try {
       schema.validateSync(request.body, { abortEarly: false })
     } catch (error) {
@@ -25,7 +25,6 @@ class UserController {
 
     const { name, email, password, admin } = request.body
     try {
-      /* Validating the same emails with sequelize*/
       const userExists = await User.findOne({
         where: {
           email,

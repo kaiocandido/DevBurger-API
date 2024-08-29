@@ -1,5 +1,3 @@
-import { Sequelize, Model } from 'sequelize'
-import bcrypt from 'bcrypt'
 /* 
 This code defines a User model for the users table in the database using Sequelize:
 
@@ -8,7 +6,8 @@ Init method: Configures the template with the name, email, password_hash, and ad
 Export: Makes the User model available for other modules to import and use.
 This model can be used to interact with the users table in the database, allowing operations such as inserting, querying, updating, and deleting user records.
 */
-
+import { Sequelize, Model } from 'sequelize'
+import bcrypt from 'bcrypt'
 class User extends Model {
   static init(sequelize) {
     super.init(

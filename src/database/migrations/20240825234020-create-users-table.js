@@ -1,13 +1,11 @@
-'use strict'
-
-const { UUIDV4 } = require('sequelize')
-const { defaultValueSchemable } = require('sequelize/lib/utils')
-
 /* 
 This code is a migration that creates a users table in the database with specific columns to store information about users. The table includes a 
 UUID as the primary key, a name, a unique email, a password hash, a flag to indicate whether the user is an administrator, and timestamps for when 
 the record was created and updated. The down method reverses the migration by removing the users table.
 */
+'use strict'
+const { UUIDV4 } = require('sequelize')
+const { defaultValueSchemable } = require('sequelize/lib/utils')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
