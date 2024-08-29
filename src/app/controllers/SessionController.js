@@ -1,6 +1,7 @@
 import * as Yup from 'yup'
 import User from '../models/User'
-
+import jwt from 'jsonwebtoken'
+import auth from '../../config/auth'
 class SessionController {
   async store(request, response) {
     const schema = Yup.object({
@@ -43,6 +44,9 @@ class SessionController {
       name: user.name,
       email,
       admin: user.admin,
+      token: jwt.sign({ id: user.id }, auth.secret, {
+        expiresIn: auth.expiresIn,
+      }),
     })
   }
 }
