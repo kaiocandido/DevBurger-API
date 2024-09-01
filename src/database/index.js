@@ -1,37 +1,32 @@
-/*
-"WHAT WAS DONE"
-
-Imports Sequelize, which is an ORM library for interacting with SQL databases
-Imports the models that will be used to map database tables
-Imports the database configurations, such as credentials and connection details
-Defines an array with all the models that will be initialized
-Defines the Database class that manages the database connection and model initialization
-Calls the init method in the constructor to ensure that the connection and model initialization are performed when the class is instantiated
-Method for configuring the database connection and initializing the models
-Creates a new instance of Sequelize with the database configuration
-Iterates over each model and calls the `init` method passing the Sequelize connection
-Exports a new instance of the Database class to be used in other modules
-*/
 import Sequelize from 'sequelize'
+import mongoose from 'mongoose'
 import User from '../app/models/User'
 import Product from '../app/models/Products'
 import Category from '../app/models/Category'
-import configDatebase from '../config/database'
+import configDatabase from '../config/database'
 
 const models = [User, Product, Category]
+
 class Database {
   constructor() {
-    this.init()
+    this.init() // Inicializa a conexão com o banco de dados SQL
+    this.mongo() // Inicializa a conexão com o MongoDB
   }
 
   init() {
-    this.connection = new Sequelize(configDatebase)
+    this.connection = new Sequelize(configDatabase)
 
     models
       .map((model) => model.init(this.connection))
       .map(
         (model) => model.associate && model.associate(this.connection.models)
       )
+  }
+
+  async mongo() {
+    this.mongoConnection = await mongoose.connect(
+      'mongodb://localhost:27017/burguer'
+    )
   }
 }
 
