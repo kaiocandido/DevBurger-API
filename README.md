@@ -41,7 +41,7 @@ PORT=3000
 ## Inicie o servidor:
 - npm start
 - yarn dev
-O servidor estará disponível em http://localhost:3000.
+O servidor estará disponível em http://localhost:3002.
 
 ## Uso
 
