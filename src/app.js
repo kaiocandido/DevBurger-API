@@ -10,10 +10,12 @@ import express from 'express'
 import routes from '../src/routes'
 import './database'
 import { resolve } from 'node:path'
+const cors = require('cors');
 
 class App {
   constructor() {
     this.app = express()
+    this.app.use(cors())
     this.middlewares()
     this.routes()
   }
